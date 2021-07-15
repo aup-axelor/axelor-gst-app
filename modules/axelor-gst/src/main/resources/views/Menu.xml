@@ -12,6 +12,18 @@
               title="Bank Account"
               action="action.viewCompany-bankAccount"
     />
+    <menuitem name="menu-sub-company"
+              parent="menu-main-company"
+              title="Company"
+              action="action.viewCompany"
+    />
+
+    <action-view name="action.viewCompany"
+                 title="Bank Account"
+                 model="com.axelor.gst.db.Company">
+        <view type="grid" name="company-grid"/>
+        <view type="form" name="company-form"/>
+    </action-view>
 
     <action-view name="action.viewCompany-bankAccount"
                  title="Bank Account"
@@ -21,57 +33,57 @@
     </action-view>
 
 <!--party-->
-    <menuitem name="menu-main-party"
-              title="Party" />
+<!--    <menuitem name="menu-main-party"-->
+<!--              title="Party" />-->
 
-    <menuitem name="menu-party-configurations"
-              parent="menu-main-party"
-              title="Configurations"
-    />
-    <menuitem name="menu-party-configurations-address"
-              parent="menu-party-configurations"
-              title="Address"
-              action="action.viewParty-address"
-    />
-    <menuitem name="menu-party-configurations-city"
-              parent="menu-party-configurations"
-              title="City"
-              action="action.viewParty-city"
-    />
-    <menuitem name="menu-party-configurations-state"
-              parent="menu-party-configurations"
-              title="State"
-              action="action.viewParty-state"
-    />
-    <menuitem name="menu-party-configurations-country"
-              parent="menu-party-configurations"
-              title="Country"
-              action="action.viewParty-country"
-    />
-    <action-view name="action.viewParty-address"
-                 title="Address"
-                 model="com.axelor.gst.db.Address">
-        <view type="grid" name="address-grid"/>
-        <view type="form" name="address-form"/>
-    </action-view>
-    <action-view name="action.viewParty-city"
-                 title="City"
-                 model="com.axelor.gst.db.City">
-        <view type="grid" name="city-grid"/>
-        <view type="form" name="city-form"/>
-    </action-view>
-    <action-view name="action.viewParty-country"
-                 title="Country"
-                 model="com.axelor.gst.db.Country">
-        <view type="grid" name="country-grid"/>
-        <view type="form" name="country-form"/>
-    </action-view>
-    <action-view name="action.viewParty-state"
-                 title="State"
-                 model="com.axelor.gst.db.State">
-        <view type="grid" name="state-grid"/>
-        <view type="form" name="state-form"/>
-    </action-view>
+<!--    <menuitem name="menu-party-configurations"-->
+<!--              parent="menu-main-party"-->
+<!--              title="Configurations"-->
+<!--    />-->
+<!--    <menuitem name="menu-party-configurations-address"-->
+<!--              parent="menu-party-configurations"-->
+<!--              title="Address"-->
+<!--              action="action.viewParty-address"-->
+<!--    />-->
+<!--    <menuitem name="menu-party-configurations-city"-->
+<!--              parent="menu-party-configurations"-->
+<!--              title="City"-->
+<!--              action="action.viewParty-city"-->
+<!--    />-->
+<!--    <menuitem name="menu-party-configurations-state"-->
+<!--              parent="menu-party-configurations"-->
+<!--              title="State"-->
+<!--              action="action.viewParty-state"-->
+<!--    />-->
+<!--    <menuitem name="menu-party-configurations-country"-->
+<!--              parent="menu-party-configurations"-->
+<!--              title="Country"-->
+<!--              action="action.viewParty-country"-->
+<!--    />-->
+<!--    <action-view name="action.viewParty-address"-->
+<!--                 title="Address"-->
+<!--                 model="com.axelor.gst.db.Address">-->
+<!--        <view type="grid" name="address-grid"/>-->
+<!--        <view type="form" name="address-form"/>-->
+<!--    </action-view>-->
+<!--    <action-view name="action.viewParty-city"-->
+<!--                 title="City"-->
+<!--                 model="com.axelor.gst.db.City">-->
+<!--        <view type="grid" name="city-grid"/>-->
+<!--        <view type="form" name="city-form"/>-->
+<!--    </action-view>-->
+<!--    <action-view name="action.viewParty-country"-->
+<!--                 title="Country"-->
+<!--                 model="com.axelor.gst.db.Country">-->
+<!--        <view type="grid" name="country-grid"/>-->
+<!--        <view type="form" name="country-form"/>-->
+<!--    </action-view>-->
+<!--    <action-view name="action.viewParty-state"-->
+<!--                 title="State"-->
+<!--                 model="com.axelor.gst.db.State">-->
+<!--        <view type="grid" name="state-grid"/>-->
+<!--        <view type="form" name="state-form"/>-->
+<!--    </action-view>-->
 
 
 </object-views>
