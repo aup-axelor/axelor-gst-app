@@ -5,18 +5,6 @@
   http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
 
 
-    <grid title="City" name="city-grid" model="com.axelor.gst.db.City">
-        <field name="name" required="true"/>
-        <field name="state"/>
-        <field name="country" required="true"/>
-    </grid>
-    <grid title="State" name="state-grid" model="com.axelor.gst.db.State">
-        <field name="name" required="true"/>
-        <field name="country" required="true"/>
-    </grid>
-    <grid title="Country" name="country-grid" model="com.axelor.gst.db.Country">
-        <field name="name" required="true"/>
-    </grid>
     <grid title="Address" name="address-grid" model="com.axelor.gst.db.Address">
         <field name="type" required="true"/>
         <field name="line1" required="true"/>
@@ -27,25 +15,6 @@
         <field name="pin"/>
     </grid>
 
-
-    <form title="City" name="city-form" model="com.axelor.gst.db.City">
-        <panel title="City">
-            <field name="name" required="true"/>
-            <field name="state"/>
-            <field name="country" required="true"/>
-        </panel>
-    </form>
-    <form title="State" name="state-form" model="com.axelor.gst.db.State">
-        <panel title="State">
-            <field name="name" required="true"/>
-            <field name="country" required="true"/>
-        </panel>
-    </form>
-    <form title="Country" name="country-form" model="com.axelor.gst.db.Country">
-        <panel title="Country">
-            <field name="name" required="true"/>
-        </panel>
-    </form>
     <form title="Address" name="address-form" model="com.axelor.gst.db.Address">
         <panel title="Address View">
             <field name="type" required="true"/>
