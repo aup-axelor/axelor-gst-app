@@ -19,7 +19,7 @@
     />
 
     <action-view name="action.viewCompany"
-                 title="Bank Account"
+                 title="Company"
                  model="com.axelor.gst.db.Company">
         <view type="grid" name="company-grid"/>
         <view type="form" name="company-form"/>

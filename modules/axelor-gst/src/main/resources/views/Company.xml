@@ -16,20 +16,25 @@
         <panel title="Overview">
             <field name="logo"/>
             <field name="name" required="true"/>
-            <field name="contact">
-                <editor title="Contact Details">
-                    <field name="name" required="true"/>
-                    <field name="type" required="true"/>
-                    <field name="primaryEmail"/>
-                    <field name="secondaryEmail"/>
-                    <field name="primaryPhone"/>
-                    <field name="secondaryPhone"/>
-                </editor>
-            </field>
             <field name="gstin"/>
             <field name="address"/>
         </panel>
-        <panel-related field="bankAccount" title="Bank Account"/>
+        <panel-tabs>
+            <panel title="Contacts">
+                <field name="contact" colSpan="12">
+                    <editor title="Contact Details">
+                        <field name="name" required="true"/>
+                        <field name="type" required="true"/>
+                        <field name="primaryEmail"/>
+                        <field name="secondaryEmail"/>
+                        <field name="primaryPhone"/>
+                        <field name="secondaryPhone"/>
+                    </editor>
+                </field>
+            </panel>
+            <panel-related field="bankDetails" title="Bank Account" colSpan="12"/>
+        </panel-tabs>
+
     </form>
 
 </object-views>
