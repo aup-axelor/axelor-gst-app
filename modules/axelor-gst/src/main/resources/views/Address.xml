@@ -4,9 +4,14 @@
               xsi:schemaLocation="http://axelor.com/xml/ns/object-views
   http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
 
-
+	<selection name="addressType">
+	<option value="default">Default</option>
+	<option value="invoice">Invoice</option>
+	<option value="shipping">Shipping</option>
+	<option value="other">other</option>
+	</selection>
     <grid title="Address" name="address-grid" model="com.axelor.gst.db.Address">
-        <field name="type" required="true"/>
+        <field name="type" required="true" selection="addressType"/>
         <field name="line1" required="true"/>
         <field name="line2" required="false"/>
         <field name="city" required="true"/>

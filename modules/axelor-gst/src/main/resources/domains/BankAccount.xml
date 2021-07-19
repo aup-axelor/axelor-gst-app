@@ -4,15 +4,11 @@
                xsi:schemaLocation="http://axelor.com/xml/ns/domain-models http://axelor.com/xml/ns/domain-models/domain-models_5.4.xsd">
 
     <module name="bankAccount" package="com.axelor.gst.db"/>
-    <enum name="AccountType">
-        <item name="SAVINGS" value="savings"/>
-        <item name="CURRENT" value="current"/>
-    </enum>
     <entity name="BankAccount">
         <string name="bank" title="Bank" required="true"/>
         <string name="accountNo" title="Account No" required="true"/>
         <string name="ifsc" title="IFSC" required="true"/>
-        <enum name="type" ref="AccountType" title="Type" default="CURRENT"/>
+        <string name="type" title="Type" default="CURRENT"/>
         <string name="address" title="Address"/>
     </entity>
 

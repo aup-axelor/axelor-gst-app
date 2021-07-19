@@ -4,12 +4,16 @@
               xsi:schemaLocation="http://axelor.com/xml/ns/object-views
   http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
 
-
+	
+	<selection name="accountType">
+	<option value="savings">Savings</option>
+	<option value="current">Current</option>
+	</selection>
     <grid title="Bank Account" name="bankAccount-grid" model="com.axelor.gst.db.BankAccount">
         <field name="bank" required="true"/>
         <field name="accountNo" required="true"/>
         <field name="ifsc" required="true"/>
-        <field name="type" selection="type"/>
+        <field name="type" selection="accountType"/>
         <field name="address" widget="Text"/>
     </grid>
     <form title="Bank Account" name="bankAccount-form" model="com.axelor.gst.db.BankAccount">
