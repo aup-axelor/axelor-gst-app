@@ -1,4 +1,2 @@
 rootProject.name = 'axelor-gst-app'
 include 'modules:axelor-gst'
-findProject(':modules:axelor-gst')?.name = 'axelor-gst'
-
