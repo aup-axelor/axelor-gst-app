@@ -5,12 +5,15 @@
   http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
 
 <!-- Dashboard -->
-	<menuitem title="Dashboard" name="menu-dashboard"/>
+	<menuitem title="Dashboard" name="menu-dashboard" icon="fa-book"/>
 
 
 <!--party-->
     <menuitem name="menu-main-party"
-              title="Party" />
+              title="Party"
+              icon=" fa-glass"
+              icon-background="yellow"
+    />
 	
 	<menuitem name="menu-party-party"
               parent="menu-main-party"
