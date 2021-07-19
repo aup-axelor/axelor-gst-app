@@ -9,7 +9,14 @@
     <string name="suffix" title="Suffix"/>
     <integer name="padding" title="Padding" min="1" max="10"/>
     <string name="nextNumber">
-    	
+    	<![CDATA[
+    	    String num=prefix;
+    	    for(int i=0;i<padding;i++){
+    	        num+="0";
+    	    }
+    	    num+=suffix!=null?suffix:"";
+    	    return num;
+    	]]>
     </string>
     <many-to-one ref="com.axelor.meta.db.MetaModel" name="model" title="Model"/>
     

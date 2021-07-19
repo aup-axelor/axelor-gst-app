@@ -17,17 +17,16 @@
         <template>
             <![CDATA[
       <div class="span4 card-image">
-        <img ng-if="hasImage" ng-src="{{$image(null, 'image')}}">
-        <img ng-if="!hasImage" src="img/user.png">
+        <img ng-src="{{$image(null, 'image')}}">
         <strong>{{name}}</strong>
       </div>
       <div class="span8">
-        <Category><strong>{{category.name}}</strong><br></Category>
-        <Code>{{code}</Code>
-        <HSBN>{{hsbn}}</HSBN>
-        Sale Price  :   {{salePrice}}
-        Cost Price  :   {{costPrice}}
-        GST Rate    :   {{gstRate}}
+        Category    :   <strong>{{category.name}}</strong><br>
+        Code        :   {{code}}<br>
+        HSBN        :   {{hsbn}}<br>
+        Sale Price  :   {{salePrice}}<br>
+        Cost Price  :   {{costPrice}}<br>
+        GST Rate    :   {{gstRate}}<br>
       </div>
     ]]>
         </template>
@@ -52,12 +51,15 @@
             <field name="name" required="true"/>
             <field name="code"  required="true"/>
             <field name="hsbn"/>
-            <field name="category"/>
+            <field name="category" onChange=""/>
             <field name="salePrice"/>
             <field name="costPrice"/>
-            <field name="gstRate" onChange=""/>
+            <field name="gstRate"/>
         </panel>
     </form>
+    <action-record name="product.onChange-category" model="com.axelor.gst.db.Product">
+        <field name="gstRate" expr="#{__ref__.category.getGstRate()}"/>
+    </action-record>
 
 
 
