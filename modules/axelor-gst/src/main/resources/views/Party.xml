@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
+    <selection name="partyType">
+        <option value="individual">Individual</option>
+        <option value="company">Company</option>
+    </selection>
+    <grid title="Party" name="party-grid" model="com.axelor.gst.db.Party">
+        <field name="reference" readonly="true"/>
+        <field name="name" required="true"/>
+        <field name="type" required="true" selection="partyType"/>
+        <field name="customer"/>
+        <field name="supplier"/>
+        <field name="gstin"/>
+        <field name="contact"/>
+        <field name="address"/>
+    </grid>
+    <form title="Party" name="party-form" model="com.axelor.gst.db.Party">
+        <panel title="Overview">
+            <field name="reference" readonly="true"/>
+            <field name="name" required="true"/>
+            <field name="type" required="true" selection="partyType"/>
+            <field name="customer"/>
+            <field name="supplier"/>
+            <field name="gstin"/>
+        </panel>
+        <panel-tabs>
+            <panel-related field="contact">
+                <field name="name" required="true"/>
+                <field name="type" required="true" selection="contactType"/>
+                <field name="primaryEmail" title="Primary Email"/>
+                <field name="secondaryEmail" title="Secondary Email"/>
+                <field name="primaryPhone" title="Primary Phone"/>
+                <field name="secondaryPhone" title="Secondary Phone"/>
+            </panel-related>
+            <panel-related field="address">
+                <field name="type" required="true"/>
+                <field name="line1" required="true"/>
+                <field name="line2" required="false"/>
+                <field name="city" required="true"/>
+                <field name="state"/>
+                <field name="country" required="true"/>
+                <field name="pin"/>
+            </panel-related>
+        </panel-tabs>
+    </form>
+</object-views>
