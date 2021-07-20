@@ -27,15 +27,36 @@
             <field name="gstin"/>
         </panel>
         <panel-tabs>
-            <panel-related field="contact">
+            <panel title="Contact">
+            <field name="contact" colSpan="12">
+            <viewer><![CDATA[
+		        <contact>
+		        {{record.name}} {{record.email}}<br>
+		        {{record.phone}}
+		        </contact>
+		        ]]>
+        	</viewer>
+            <editor>
                 <field name="name" required="true"/>
                 <field name="type" required="true" selection="contactType"/>
                 <field name="primaryEmail" title="Primary Email"/>
                 <field name="secondaryEmail" title="Secondary Email"/>
                 <field name="primaryPhone" title="Primary Phone"/>
                 <field name="secondaryPhone" title="Secondary Phone"/>
-            </panel-related>
-            <panel-related field="address">
+                </editor>
+               </field>
+            </panel>
+            <panel title="Address">
+            <field name="address" colSpan="12">
+            <viewer><![CDATA[
+		        <address>
+		        {{record.type}} {{record.line1}} {{record.line2}}<br>
+		        {{record.city.name}}, {{record.state.name}} - {{record.pincode}}<br>
+		        {{record.country.name}}
+		        </address>
+		        ]]>
+        	</viewer>
+            <editor>
                 <field name="type" required="true"/>
                 <field name="line1" required="true"/>
                 <field name="line2" required="false"/>
@@ -43,7 +64,9 @@
                 <field name="state"/>
                 <field name="country" required="true"/>
                 <field name="pin"/>
-            </panel-related>
+                </editor>
+                </field>
+            </panel>
         </panel-tabs>
     </form>
 </object-views>

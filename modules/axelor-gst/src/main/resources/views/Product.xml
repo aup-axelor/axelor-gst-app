@@ -51,14 +51,14 @@
             <field name="name" required="true"/>
             <field name="code"  required="true"/>
             <field name="hsbn"/>
-            <field name="category" onChange=""/>
+            <field name="category" onChange="product.onChange-category"/>
             <field name="salePrice"/>
             <field name="costPrice"/>
             <field name="gstRate"/>
         </panel>
     </form>
     <action-record name="product.onChange-category" model="com.axelor.gst.db.Product">
-        <field name="gstRate" expr="#{__ref__.category.getGstRate()}"/>
+        <field name="gstRate" expr="#{category.getGstRate()}"/>
     </action-record>
 
 
