@@ -16,19 +16,35 @@
         <field name="cgst"/>
         <field name="grossAmount"/>
     </grid>
-    <form title="Invoice Line" name="invoiceLine-form" model="com.axelor.gst.db.InvoiceLine">
-        <panel title="Overview">
-            <field name="product"/>
+    <form title="Invoice Line" name="invoiceLine-form" model="com.axelor.gst.db.InvoiceLine"
+          onSave="action.onSave-invoice-line">
+        <panel title="Overview" css="panel-blue">
+            <field name="product" onChange="action.onChangeProduct-invoice-line"/>
             <field name="hsbn"/>
-            <field name="item"/>
-            <field name="qty"/>
-            <field name="price"/>
+            <field name="item" />
+            <field name="qty" onChange="action.onChangeAmount-invoice-line"/>
+            <field name="price" onChange="action.onChangeAmount-invoice-line"/>
             <field name="netAmount"/>
             <field name="gstRate"/>
             <field name="igst"/>
             <field name="sgst"/>
             <field name="cgst"/>
             <field name="grossAmount"/>
+            
         </panel>
     </form>
+<!--    TODO change the netAmount update-->
+    <action-record name="action.onChangeAmount-invoice-line" model="com.axelor.gst.db.InvoiceLine">
+        <field name="netAmount" expr="#{price*qty}"/>
+    </action-record>
+    <action-record name="action.onSave-invoice-line" model="com.axelor.gst.db.InvoiceLine">
+        <field name="igst" expr="#{gstRate*netAmount}"/>
+        <field name="sgst" expr="#{gstRate*netAmount/2}"/>
+        <field name="cgst" expr="#{gstRate*netAmount/2}"/>
+        <field name="grossAmount" expr="#{igst+cgst+sgst+netAmount}"/>
+    </action-record>
+    <action-record name="action.onChangeProduct-invoice-line" model="com.axelor.gst.db.InvoiceLine">
+        <field name="gstRate" expr="#{product.getCategory().getGstRate()}"/>
+        <field name="item" expr="eval: '['+product.code+']'+product.name"/>
+    </action-record>
 </object-views>
