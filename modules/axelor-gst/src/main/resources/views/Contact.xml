@@ -16,7 +16,7 @@
         <field name="primaryPhone" title="Primary Phone"/>
         <field name="secondaryPhone" title="Secondary Phone"/>
     </grid>
-    <form title="Contact" name="contact-grid" model="com.axelor.gst.db.Contact">
+    <form title="Contact" name="contact-form" model="com.axelor.gst.db.Contact">
         <panel title="Contact">
             <field name="name" required="true"/>
             <field name="type" required="true" selection="contactType"/>
