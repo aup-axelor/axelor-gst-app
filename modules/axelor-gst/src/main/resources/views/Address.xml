@@ -22,7 +22,7 @@
 
     <form title="Address" name="address-form" model="com.axelor.gst.db.Address">
         <panel title="Address View">
-            <field name="type" required="true"/>
+            <field name="type" required="true" selection="addressType"/>
             <field name="line1" required="true"/>
             <field name="line2" required="false"/>
             <field name="city" required="true"/>
