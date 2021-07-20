@@ -5,23 +5,25 @@
   http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
 
 <!-- Dashboard -->
-	<menuitem title="Dashboard" name="menu-dashboard" icon="fa-book"/>
+	<menuitem title="Dashboard" name="menu-dashboard" icon="fa-book" icon-background="deeppurple"/>
 
 
 <!--party-->
     <menuitem name="menu-main-party"
               title="Party"
-              icon=" fa-glass"
+              icon="fa-globe"
               icon-background="yellow"
     />
 	
 	<menuitem name="menu-party-party"
               parent="menu-main-party"
               title="Party"
+              action="action.viewParty"
     />
     <menuitem name="menu-party-contact"
               parent="menu-main-party"
               title="Contact"
+              action="action.viewContact"
     />
     <menuitem name="menu-party-configurations"
               parent="menu-main-party"
@@ -47,6 +49,21 @@
               title="Country"
               action="action.viewParty-country"
     />    
+    
+    <action-view name="action.viewParty"
+                 title="Party"
+                 model="com.axelor.gst.db.Party">
+        <view type="grid" name="party-grid"/>
+        <view type="form" name="party-form"/>
+    </action-view>
+    
+    <action-view name="action.viewContact"
+                 title="Conatct"
+                 model="com.axelor.gst.db.Contact">
+        <view type="grid" name="contact-grid"/>
+        <view type="form" name="contact-form"/>
+    </action-view>
+    
     <action-view name="action.viewParty-address"
                  title="Address"
                  model="com.axelor.gst.db.Address">
@@ -76,7 +93,10 @@
 <!-- Product -->
 
 	<menuitem name="menu-main-Product"
-              title="Product" />
+              title="Product"
+              icon="fa-product-hunt"
+              icon-background="red" 
+              />
               
     <menuitem name="menu-sub-product"
               parent="menu-main-Product"
@@ -109,7 +129,10 @@
 
 
 	<menuitem name="menu-main-invoice"
-              title="Invoice" />
+              title="Invoice"
+              icon="fa-file"
+              icon-background="blue" 
+              />
 
 	<menuitem name="menu-sub-createInvoice"
               parent="menu-main-invoice"
@@ -140,11 +163,19 @@
               action="action.allInvoice"
     />
 
-
+    <action-view name="action.allInvoice"
+                 title="Invoice Line"
+                 model="com.axelor.gst.db.InvoiceLine">
+        <view type="grid" name="invoiceLine-grid"/>
+        <view type="form" name="invoiceLine-form"/>
+    </action-view>
 
 <!--company-->
     <menuitem name="menu-main-company"
-              title="Company" />
+              title="Company"
+              icon-background="pink"
+              icon="fa-building" 
+              />
               
     <menuitem name="menu-sub-company"
               parent="menu-main-company"
