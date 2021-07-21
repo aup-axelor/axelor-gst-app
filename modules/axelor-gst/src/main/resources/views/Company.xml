@@ -13,6 +13,7 @@
 		<field name="bankAccount" />
 		<field name="address" />
 	</grid>
+
 	<form title="Company" name="company-form"
 		model="com.axelor.gst.db.Company">
 		<panel title="Overview">
@@ -37,7 +38,6 @@
 			<panel-related field="bankDetails" title="Bank Account"
 				colSpan="12" />
 		</panel-tabs>
-
 	</form>
 
 </object-views>

@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <object-views xmlns="http://axelor.com/xml/ns/object-views"
-              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/object-views
   http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
-    
-    
-    
-    <cards title="Product" name="product-card" model="com.axelor.gst.db.Product">
-        <field name="name"/>
-        <field name="code"/>
-        <field name="hsbn"/>
-        <field name="category"/>
-        <field name="salePrice"/>
-        <field name="costPrice"/>
-        <field name="gstRate"/>
-        <template>
+
+	<cards title="Product" name="product-card"
+		model="com.axelor.gst.db.Product">
+		<field name="name" />
+		<field name="code" />
+		<field name="hsbn" />
+		<field name="category" />
+		<field name="salePrice" />
+		<field name="costPrice" />
+		<field name="gstRate" />
+		<template>
             <![CDATA[
       <div class="span4 card-image">
         <img ng-src="{{$image(null, 'image')}}">
@@ -30,37 +29,40 @@
       </div>
     ]]>
         </template>
-    </cards>
-    <grid title="Product" name="product-grid" model="com.axelor.gst.db.Product">
-        <toolbar>
-            <button name="createInvoice" title="Create Invoice" onClick=""/>
-            <button name="print" title="Print" onClick=""/>
-        </toolbar>
-        <field name="name" required="true"/>
-        <field name="code"  required="true"/>
-        <field name="hsbn"/>
-        <field name="category"/>
-        <field name="salePrice"/>
-        <field name="costPrice"/>
-        <field name="gstRate"/>
-    </grid>
+	</cards>
 
-    <form title="Product" name="product-form" model="com.axelor.gst.db.Product">
-        <panel title="Overview">
-            <field name="image" colSpan="12"/>
-            <field name="name" required="true"/>
-            <field name="code"  required="true"/>
-            <field name="hsbn"/>
-            <field name="category" onChange="product.onChange-category"/>
-            <field name="salePrice"/>
-            <field name="costPrice"/>
-            <field name="gstRate"/>
-        </panel>
-    </form>
-    <action-record name="product.onChange-category" model="com.axelor.gst.db.Product">
-        <field name="gstRate" expr="#{category.getGstRate()}"/>
-    </action-record>
+	<grid title="Product" name="product-grid"
+		model="com.axelor.gst.db.Product">
+		<toolbar>
+			<button name="createInvoice" title="Create Invoice" onClick="" />
+			<button name="print" title="Print" onClick="" />
+		</toolbar>
+		<field name="name" required="true" />
+		<field name="code" required="true" />
+		<field name="hsbn" />
+		<field name="category" />
+		<field name="salePrice" />
+		<field name="costPrice" />
+		<field name="gstRate" />
+	</grid>
 
+	<form title="Product" name="product-form"
+		model="com.axelor.gst.db.Product">
+		<panel title="Overview">
+			<field name="image" colSpan="12" />
+			<field name="name" required="true" />
+			<field name="code" required="true" />
+			<field name="hsbn" />
+			<field name="category" onChange="product.onChange-category" />
+			<field name="salePrice" />
+			<field name="costPrice" />
+			<field name="gstRate" />
+		</panel>
+	</form>
 
+	<action-record name="product.onChange-category"
+		model="com.axelor.gst.db.Product">
+		<field name="gstRate" expr="#{category.getGstRate()}" />
+	</action-record>
 
 </object-views>

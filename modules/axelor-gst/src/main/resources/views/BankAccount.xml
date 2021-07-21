@@ -9,6 +9,7 @@
 		<option value="savings">Savings</option>
 		<option value="current">Current</option>
 	</selection>
+
 	<grid title="Bank Account" name="bankAccount-grid"
 		model="com.axelor.gst.db.BankAccount">
 		<field name="bank" required="true" />
@@ -17,6 +18,7 @@
 		<field name="type" selection="accountType" />
 		<field name="address" widget="Text" />
 	</grid>
+
 	<form title="Bank Account" name="bankAccount-form"
 		model="com.axelor.gst.db.BankAccount">
 		<panel title="Overview">
@@ -29,17 +31,5 @@
 			<field name="address" widget="Text" />
 		</panel>
 	</form>
-	<action-record name="action.setDefaultType"
-		model="com.axelor.gst.db.BankAccount">
-		<field name="type" expr="eval:current" />
-	</action-record>
-
-
-
-
-
-
-
-
 
 </object-views>
