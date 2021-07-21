@@ -1,30 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
-               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-               xsi:schemaLocation="http://axelor.com/xml/ns/domain-models http://axelor.com/xml/ns/domain-models/domain-models_5.4.xsd">
+<domain-models
+	xmlns="http://axelor.com/xml/ns/domain-models"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/domain-models http://axelor.com/xml/ns/domain-models/domain-models_5.4.xsd">
 
-    <module name="sequence" package="com.axelor.gst.db"/>
-    <entity name="Sequence">
-    <string name="prefix" title="Prefix" required="true"/>
-    <string name="suffix" title="Suffix"/>
-    <integer name="padding" title="Padding" min="1" max="10"/>
-    <string name="nextNumber">
-    	<![CDATA[
-    	    String num=prefix;
-    	    for(int i=0;i<padding;i++){
-    	        num+="0";
-    	    }
-    	    num+=suffix!=null?suffix:"";
-    	    return num;
-    	]]>
-    </string>
-    <many-to-one ref="com.axelor.meta.db.MetaModel" name="model" title="Model"/>
-    
-    
-    
-    
-    
-    </entity>
-    
-    
-    </domain-models>
+	<module name="sequence" package="com.axelor.gst.db" />
+
+	<entity name="Sequence">
+		<string name="prefix" title="Prefix" required="true" />
+		<string name="suffix" title="Suffix" />
+		<integer name="padding" title="Padding" min="1" max="10" />
+		<string name="nextNumber" />
+		<many-to-one ref="com.axelor.meta.db.MetaModel"
+			name="model" title="Model" />
+		<finder-method name="findByModelName"
+			using="String:name" filter="self.model.name=:name" all="true"
+			orderBy="version" />
+	</entity>
+
+</domain-models>
