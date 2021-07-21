@@ -1,35 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <object-views xmlns="http://axelor.com/xml/ns/object-views"
-              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/object-views
   http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
 
 	<selection name="addressType">
-	<option value="default">Default</option>
-	<option value="invoice">Invoice</option>
-	<option value="shipping">Shipping</option>
-	<option value="other">other</option>
+		<option value="default">Default</option>
+		<option value="invoice">Invoice</option>
+		<option value="shipping">Shipping</option>
+		<option value="other">other</option>
 	</selection>
-    <grid title="Address" name="address-grid" model="com.axelor.gst.db.Address">
-        <field name="type" required="true" selection="addressType"/>
-        <field name="line1" required="true"/>
-        <field name="line2" required="false"/>
-        <field name="city" required="true"/>
-        <field name="state"/>
-        <field name="country" required="true"/>
-        <field name="pin"/>
-    </grid>
 
-    <form title="Address" name="address-form" model="com.axelor.gst.db.Address">
-        <panel title="Address View">
-            <field name="type" required="true" selection="addressType"/>
-            <field name="line1" required="true"/>
-            <field name="line2" required="false"/>
-            <field name="city" required="true"/>
-            <field name="state"/>
-            <field name="country" required="true"/>
-            <field name="pin"/>
-        </panel>
-    </form>
+	<grid title="Address" name="address-grid"
+		model="com.axelor.gst.db.Address">
+		<field name="type" required="true" selection="addressType" />
+		<field name="line1" required="true" />
+		<field name="line2" required="false" />
+		<field name="city" required="true" />
+		<field name="state" />
+		<field name="country" required="true" />
+		<field name="pin" />
+	</grid>
+
+	<form title="Address" name="address-form"
+		model="com.axelor.gst.db.Address">
+		<panel title="Address View">
+			<field name="type" required="true" selection="addressType" />
+			<field name="line1" required="true" />
+			<field name="line2" required="false" />
+			<field name="city" required="true" />
+			<field name="state" />
+			<field name="country" required="true" />
+			<field name="pin" />
+		</panel>
+	</form>
 
 </object-views>

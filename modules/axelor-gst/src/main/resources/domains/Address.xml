@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
-               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-               xsi:schemaLocation="http://axelor.com/xml/ns/domain-models http://axelor.com/xml/ns/domain-models/domain-models_5.4.xsd">
+<domain-models
+	xmlns="http://axelor.com/xml/ns/domain-models"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/domain-models http://axelor.com/xml/ns/domain-models/domain-models_5.4.xsd">
 
-    <module name="address" package="com.axelor.gst.db"/>
-    <entity name="Address">
-        <string name="type" default="Default" title="Type" required="true"/>
-        <string name="line1" title="Line1" required="true"/>
-        <string name="line2" title="Line2"/>
-        <many-to-one name="city" ref="com.axelor.gst.db.City" required="true" title="City"/>
-        <many-to-one name="state" ref="com.axelor.gst.db.State" title="State"/>
-        <many-to-one name="country" ref="com.axelor.gst.db.Country" required="true" title="Country"/>
-        <string name="pin" title="PinCode"/>
-    </entity>
+	<module name="address" package="com.axelor.gst.db" />
 
-
+	<entity name="Address">
+		<string name="type" default="Default" title="Type"
+			required="true" />
+		<string name="line1" title="Line1" required="true" />
+		<string name="line2" title="Line2" />
+		<many-to-one name="city" ref="com.axelor.gst.db.City"
+			required="true" title="City" />
+		<many-to-one name="state" ref="com.axelor.gst.db.State"
+			title="State" />
+		<many-to-one name="country"
+			ref="com.axelor.gst.db.Country" required="true" title="Country" />
+		<string name="pin" title="PinCode" />
+	</entity>
 
 </domain-models>

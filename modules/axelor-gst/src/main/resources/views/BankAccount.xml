@@ -1,35 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <object-views xmlns="http://axelor.com/xml/ns/object-views"
-              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/object-views
   http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
 
-	
+
 	<selection name="accountType">
-	<option value="savings">Savings</option>
-	<option value="current">Current</option>
+		<option value="savings">Savings</option>
+		<option value="current">Current</option>
 	</selection>
-    <grid title="Bank Account" name="bankAccount-grid" model="com.axelor.gst.db.BankAccount">
-        <field name="bank" required="true"/>
-        <field name="accountNo" required="true"/>
-        <field name="ifsc" required="true"/>
-        <field name="type" selection="accountType"/>
-        <field name="address" widget="Text"/>
-    </grid>
-    <form title="Bank Account" name="bankAccount-form" model="com.axelor.gst.db.BankAccount">
-        <panel title="Overview">
-            <field name="bank" required="true"/>
-            <field name="accountNo" required="true"/>
-            <field name="ifsc" required="true"/>
-            <field name="type"/>
-        </panel>
-        <panel title="Address">
-            <field name="address" widget="Text"/>
-        </panel>
-    </form>
-    <action-record name="action.setDefaultType" model="com.axelor.gst.db.BankAccount">
-        <field name="type" expr="eval:current"/>
-    </action-record>
+	<grid title="Bank Account" name="bankAccount-grid"
+		model="com.axelor.gst.db.BankAccount">
+		<field name="bank" required="true" />
+		<field name="accountNo" required="true" />
+		<field name="ifsc" required="true" />
+		<field name="type" selection="accountType" />
+		<field name="address" widget="Text" />
+	</grid>
+	<form title="Bank Account" name="bankAccount-form"
+		model="com.axelor.gst.db.BankAccount">
+		<panel title="Overview">
+			<field name="bank" required="true" />
+			<field name="accountNo" required="true" />
+			<field name="ifsc" required="true" />
+			<field name="type" />
+		</panel>
+		<panel title="Address">
+			<field name="address" widget="Text" />
+		</panel>
+	</form>
+	<action-record name="action.setDefaultType"
+		model="com.axelor.gst.db.BankAccount">
+		<field name="type" expr="eval:current" />
+	</action-record>
 
 
 
