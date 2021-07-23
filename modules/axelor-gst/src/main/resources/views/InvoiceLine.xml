@@ -21,17 +21,18 @@
 
 	<form title="Invoice Line" name="invoiceLine-form"
 		model="com.axelor.gst.db.InvoiceLine"
-		onSave="action.onSave-invoice-line">
+		onSave="action.onSave-invoice-line"
+	>
 		<panel title="Overview" css="panel-blue">
 			<field name="product"
 				onChange="action.onChangeProduct-invoice-line" />
 			<field name="hsbn" />
 			<field name="item" />
+			<field name="invoice"/>
 			<field name="qty" onChange="action.onChangeAmount-invoice-line" />
-			<field name="price"
-				onChange="action.onChangeAmount-invoice-line" />
-			<field name="netAmount" />
-			<field name="gstRate" />
+			<field name="price" onChange="action.onChangeAmount-invoice-line" />
+			<field name="netAmount" onChange="action-igst-cgst-sgst"/>
+			<field name="gstRate" onChange="action-igst-cgst-sgst"/>
 			<field name="igst" />
 			<field name="sgst" />
 			<field name="cgst" />
@@ -46,12 +47,15 @@
 		<field name="netAmount" expr="#{price*qty}" />
 	</action-record>
 
+	<action-record name="action-igst-cgst-sgst" model="com.axelor.gst.db.InvoiceLine">
+		<field name="igst" expr="eval:gstRate*netAmount" if="eval:invoice.invoiceAddress.state!=invoice.shippingAddress.state"/>
+		<field name="sgst" expr="eval:gstRate*netAmount/2" if="eval:invoice.invoiceAddress.state!=invoice.shippingAddress.state"/>
+		<field name="cgst" expr="eval:gstRate*netAmount/2" if="eval:invoice.invoiceAddress.state!=invoice.shippingAddress.state" />
+	</action-record>
+
 	<action-record name="action.onSave-invoice-line"
 		model="com.axelor.gst.db.InvoiceLine">
-		<field name="igst" expr="#{gstRate*netAmount}" />
-		<field name="sgst" expr="#{gstRate*netAmount/2}" />
-		<field name="cgst" expr="#{gstRate*netAmount/2}" />
-		<field name="grossAmount" expr="#{igst+cgst+sgst+netAmount}" />
+		<field name="grossAmount" expr="eval:igst+cgst+sgst+netAmount" />
 	</action-record>
 
 	<action-record name="action.onChangeProduct-invoice-line"
