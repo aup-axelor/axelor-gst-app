@@ -120,9 +120,15 @@
 
 	<menuitem name="menu-sub-allInvoice"
 		parent="menu-main-invoice" title="All Invoice"
-		action="action.allInvoice" />
+		action="action.all-Invoice" />
 
-	<action-view name="action.allInvoice" title="Invoice Line"
+	<action-view name="action.all-Invoice" title="Invoice"
+				 model="com.axelor.gst.db.InvoiceLine">
+		<view type="grid" name="invoice-grid" />
+		<view type="form" name="invoice-form" />
+	</action-view>
+
+	<action-view name="action.allInvoice-line" title="Invoice Line"
 		model="com.axelor.gst.db.InvoiceLine">
 		<view type="grid" name="invoiceLine-grid" />
 		<view type="form" name="invoiceLine-form" />
