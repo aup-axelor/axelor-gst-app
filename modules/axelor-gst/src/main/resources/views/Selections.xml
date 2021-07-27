@@ -4,34 +4,34 @@
               xsi:schemaLocation="http://axelor.com/xml/ns/object-views
   http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
 
-    <selection name="accountType">
+    <selection name="accountType" >
         <option value="Savings">Savings</option>
         <option value="Current">Current</option>
     </selection>
 
     <selection name="invoice-type">
-        <option value="draft">Draft</option>
-        <option value="validated">Validated</option>
-        <option value="paid">Paid</option>
-        <option value="cancelled">Cancelled</option>
+        <option value="Draft">Draft</option>
+        <option value="Validated">Validated</option>
+        <option value="Paid">Paid</option>
+        <option value="Cancelled">Cancelled</option>
     </selection>
 
     <selection name="contactType">
-        <option value="primary">Primary</option>
-        <option value="secondary">Secondary</option>
-        <option value="others">Others</option>
+        <option value="Primary">Primary</option>
+        <option value="Secondary">Secondary</option>
+        <option value="Others">Others</option>
     </selection>
 
     <selection name="partyType">
-        <option value="individual">Individual</option>
-        <option value="company">Company</option>
+        <option value="Individual">Individual</option>
+        <option value="Company">Company</option>
     </selection>
 
     <selection name="addressType">
-        <option value="default">Default</option>
-        <option value="invoice">Invoice</option>
-        <option value="shipping">Shipping</option>
-        <option value="other">other</option>
+        <option value="Default">Default</option>
+        <option value="Invoice">Invoice</option>
+        <option value="Shipping">Shipping</option>
+        <option value="Other">Other</option>
     </selection>
 
 
