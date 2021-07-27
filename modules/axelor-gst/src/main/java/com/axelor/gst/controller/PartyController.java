@@ -1,6 +1,6 @@
 package com.axelor.gst.controller;
 
-import com.axelor.gst.db.Party;
+//import com.axelor.gst.db.Party;
 import com.axelor.gst.service.SequenceService;
 import com.axelor.rpc.ActionRequest;
 import com.axelor.rpc.ActionResponse;
@@ -17,7 +17,8 @@ public class PartyController {
     public void getReference(ActionRequest request, ActionResponse response){
 //        Party party=request.getContext().asType(Party.class);
         String reference= sequenceService.getReference("Party");
-        if(reference=="") response.setError("No sequence is specified for the Invoice");
+        if(reference=="") response.setError("No sequence is specified for the party");
         else response.setValue("reference",reference);
+//        response.setReload(reload);
     }
 }
