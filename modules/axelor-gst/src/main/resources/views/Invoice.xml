@@ -17,16 +17,32 @@
 		<field name="netSgst"/>
 		<field name="grossAmount"/>
 	</grid>
-	<form title="Invoice" name="invoice-form" model="com.axelor.gst.db.Invoice">
+
+	<form title="Invoice" name="invoice-form" model="com.axelor.gst.db.Invoice" onNew="action-party-reference-generate">
+		
+		<toolbar>
+			<button name="reportButton" title="Print" showTitle="false" showIf="id" onClick="" icon="fa-print" />
+		</toolbar>
+
 		<panel name="statusPanel" title="Status">
-			<field name="status" selection="invoice-type" widget="NavSelect"/>
+			<field name="status" showTitle="false" colSpan="12" widget="NavSelect" />
 		</panel>
-		<panel sidebar="true" title="Change Status" hideIf="status=='Paid'">
-			<button onClick="" name="statusDraft" title="Draft" hideIf="status == 'Draft' || status == 'Paid'"/>
-			<button onClick="" name="statusValidate" title="Validate" hideIf="status=='Validate'|| status=='Paid' || status=='Cancelled'"/>
-			<button onClick="" name="statusPaid" title="Paid" hideIf="status=='Cancelled'"/>
-			<button onClick="" name="statusCancel" title="Cancel" hideIf="status=='Paid'"/>
+
+		<panel sidebar="true" title="Status Change" showTitle="false" hideIf="status == 'Paid'">
+			<button name="statusDraft" title="Draft"
+					hideIf="status == 'Draft' || status == 'Paid'"
+					onClick="action-draft-status-change" />
+			<button name="statusValidate" title="Validated"
+					hideIf="status == 'Cancelled' || status == 'Paid' || status == 'Validated'"
+					onClick="action-validate-status-change" />
+			<button name="statusPaid" title="Paid"
+					hideIf="status == 'Draft' || status == 'Cancelled' || status == 'Paid'"
+					onClick="action-paid-status-change" />
+			<button name="statusCancelled" title="Cancelled"
+					hideIf="status == 'Cancelled' || status == 'Paid'"
+					onClick="action-cancelled-status-change" />
 		</panel>
+    
 		<panel title="Overview">
 			<field name="reference"/>
 			<field name="company"/>
@@ -36,32 +52,56 @@
 			<field name="partyContact"/>
 			<field name="invoiceAddress"/>
 			<field name="shippingAddress"/>
-			<field name="isUseInvocieAddressAsShipping"/>
+			<field name="isUseInvocieAddressAsShipping" />
 			<field name="netAmount"/>
 			<field name="netIgst"/>
 			<field name="netCsgt"/>
 			<field name="netSgst"/>
 			<field name="grossAmount"/>
 		</panel>
-		<panel-related field="invoiceItemsList"
-					   grid-view="invoiceLine-grid" form-view="invoiceLine-form" colSpan="12"/>
+		<panel-related field="invoiceItemsList" grid-view="invoiceLine-grid"
+					   form-view="invoiceLine-form" colSpan="12"/>
 	</form>
 
   	<kanban columnBy="status" model="com.axelor.gst.db.Invoice" sequenceBy="priority" title="Invoice" name="invoice-kanban">
-  		<field name="invoiceDate"></field>
-	    <field name="priority"></field>
-	    <field name="party"></field>
-	    <field name="invoiceAddress"></field>
-	
+  		<field name="invoiceDate"/>
+	    <field name="priority"/>
+	    <field name="party"/>
+	    <field name="invoiceAddress"/>
+		<field name="reference"/>
+		
 	    <template><![CDATA[
-	      <i class='fa fa-clock-o'></i><h4>{{dateT}}</h4>
-	    <div class="card-body">{{party.name}}</div>
-	    <div class="card-footer">
-	     <span>{{invoiceAddress.line1}}</span>
-	    </div>
-    		]]>
-    </template>
-  	
+			<div class="card-body">
+				{{reference}}<br>
+				{{party.name}}<br>
+			</div>
+			<div class="card-footer">
+			 <span>{{invoiceAddress.line1}}</span>
+			</div>
+				]]>
+    	</template>
   	</kanban>
+
+	<action-attrs name="action-draft-status-change">
+		<attribute name="value" for="status" expr="Draft" />
+	</action-attrs>
+
+	<action-attrs name="action-validate-status-change">
+		<attribute name="value" for="status" expr="Validated" />
+	</action-attrs>
+
+	<action-attrs name="action-paid-status-change">
+		<attribute name="value" for="status" expr="Paid" />
+	</action-attrs>
+
+	<action-attrs name="action-cancelled-status-change">
+		<attribute name="value" for="status" expr="Cancelled" />
+	</action-attrs>
+
+	<action-method name="action-party-reference-generate">
+		<call class="com.axelor.gst.controller.InvoiceController" method="getReference" />
+	</action-method>
+  	
+  	
   
   </object-views>
