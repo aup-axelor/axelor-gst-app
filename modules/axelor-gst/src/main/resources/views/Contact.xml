@@ -4,12 +4,6 @@
 	xsi:schemaLocation="http://axelor.com/xml/ns/object-views
   http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
 
-	<selection name="contactType">
-		<option value="primary">Primary</option>
-		<option value="secondary">Secondary</option>
-		<option value="others">Others</option>
-	</selection>
-
 	<grid title="Contact" name="contact-grid"
 		model="com.axelor.gst.db.Contact">
 		<field name="name" required="true" />

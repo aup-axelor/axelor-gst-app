@@ -5,11 +5,6 @@
   http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
 
 
-	<selection name="accountType">
-		<option value="savings">Savings</option>
-		<option value="current">Current</option>
-	</selection>
-
 	<grid title="Bank Account" name="bankAccount-grid"
 		model="com.axelor.gst.db.BankAccount">
 		<field name="bank" required="true" />
@@ -25,7 +20,7 @@
 			<field name="bank" required="true" />
 			<field name="accountNo" required="true" />
 			<field name="ifsc" required="true" />
-			<field name="type" />
+			<field name="type" selection="accountType"/>
 		</panel>
 		<panel title="Address">
 			<field name="address" widget="Text" />

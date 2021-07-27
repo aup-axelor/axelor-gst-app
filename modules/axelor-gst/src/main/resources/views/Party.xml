@@ -4,11 +4,6 @@
 	xsi:schemaLocation="http://axelor.com/xml/ns/object-views
   http://axelor.com/xml/ns/object-views/object-views_5.4.xsd">
 
-	<selection name="partyType">
-		<option value="individual">Individual</option>
-		<option value="company">Company</option>
-	</selection>
-
 	<grid title="Party" name="party-grid"
 		model="com.axelor.gst.db.Party">
 		<field name="reference" readonly="true" />
