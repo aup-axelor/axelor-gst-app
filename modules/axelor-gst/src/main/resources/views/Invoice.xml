@@ -21,7 +21,7 @@
 	<form title="Invoice" name="invoice-form" model="com.axelor.gst.db.Invoice" onNew="action-party-reference-generate">
 		
 		<toolbar>
-			<button name="reportButton" title="Print" showTitle="false" showIf="id" onClick="" icon="fa-print" />
+			<button name="reportButton" title="Print" showTitle="false" showIf="id" onClick="action-report-invoice" icon="fa-print" />
 		</toolbar>
 
 		<panel name="statusPanel" title="Status">
@@ -102,6 +102,9 @@
 		<call class="com.axelor.gst.controller.InvoiceController" method="getReference" />
 	</action-method>
   	
-  	
+  	<action-report output="invoice-${name}-${date}" name="action-report-invoice" design="invoice.rptdesign" format="pdf">
+  		<param name="id" expr="eval:id"/>
+  	</action-report>
+  		
   
   </object-views>
