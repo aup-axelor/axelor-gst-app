@@ -16,7 +16,7 @@ public class InvoiceLineController {
 
     public void getTaxes(ActionRequest request, ActionResponse response){
         InvoiceLine line=request.getContext().asType(InvoiceLine.class);
-        Invoice invoice=request.getContext().asType(Invoice.class);
+        Invoice invoice=request.getContext().getParent().asType(Invoice.class);//
         BigDecimal igst=service.getIgst(invoice,line);
         BigDecimal sgst=service.getSgst(invoice,line);
         BigDecimal cgst=service.getCgst(invoice,line);
