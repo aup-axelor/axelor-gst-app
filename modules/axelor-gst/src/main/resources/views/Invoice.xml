@@ -81,6 +81,10 @@
 				]]>
     	</template>
   	</kanban>
+  	
+  	<action-record name="action-current-date" model="com.axelor.get.db.Invoice">
+  		<field name="invoiceDate" expr="__date__"/>
+  	</action-record>
 
 	<action-attrs name="action-draft-status-change">
 		<attribute name="value" for="status" expr="Draft" />
