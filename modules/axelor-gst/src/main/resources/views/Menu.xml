@@ -105,7 +105,9 @@
 
 	<menuitem name="menu-sub-createInvoice"
 		parent="menu-main-invoice" title="Create Invoice"
-		action="action.createInvoice" />
+		action="action.createInvoice"
+		icon-background="red" 
+	/>
 		
 	<menuitem name="menu-sub-draftInvoice"
 		parent="menu-main-invoice" title="Draft Invoice"
@@ -119,6 +121,10 @@
 		parent="menu-main-invoice" title="Paid Invoice"
 		action="action.paidInvoice" />
 
+	<menuitem name="menu-sub-cancelledInvoice"
+			  parent="menu-main-invoice" title="Cancelled Invoice"
+			  action="action.cancelledInvoice" />
+
 	<menuitem name="menu-sub-allInvoice"
 		parent="menu-main-invoice" title="All Invoice"
 		action="action.all-Invoice" />
@@ -131,16 +137,29 @@
 	<action-view name="action.DraftInvoice" title="Invoice"
 				 model="com.axelor.gst.db.Invoice">
 		<view type="grid" name="invoice-grid" />
+		<domain>self.status = :status</domain>
+		<context name="status" expr="Draft"/>
 	</action-view>
 	
 	<action-view name="action.validateInvoice" title="Invoice"
 				 model="com.axelor.gst.db.Invoice">
 		<view type="grid" name="invoice-grid" />
+		<domain>self.status = :status</domain>
+		<context name="status" expr="Validated"/>
 	</action-view>
 	
 	<action-view name="action.paidInvoice" title="Invoice"
 				 model="com.axelor.gst.db.Invoice">
 		<view type="grid" name="invoice-grid" />
+		<domain>self.status = :status</domain>
+		<context name="status" expr="Paid"/>
+	</action-view>
+
+	<action-view name="action.cancelledInvoice" title="Invoice"
+				 model="com.axelor.gst.db.Invoice">
+		<view type="grid" name="invoice-grid" />
+		<domain>self.status = :status</domain>
+		<context name="status" expr="Cancelled"/>
 	</action-view>
 	
 	<action-view name="action.all-Invoice" title="Invoice"
