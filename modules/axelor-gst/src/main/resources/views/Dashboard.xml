@@ -105,7 +105,7 @@
   
   <action-view name="action-view-older-invoices" title="Older Invoices" model="com.axelor.gst.db.Invoice">
   	<view type="grid" name="invoice-grid"/>
-  	<domain>self.status='Validated' and self.invoiceDate &lt; :date date </domain>
+  	<domain>self.status='Validated' and self.invoiceDate &lt; :date</domain>
   	<context name="date" expr="eval:__date__.now().minusMonths(1)"/>
   </action-view>
   
