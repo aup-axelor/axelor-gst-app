@@ -6,8 +6,13 @@
 
 	<!-- Dashboard -->
 	<menuitem title="Dashboard" name="menu-dashboard"
-		icon="fa-book" icon-background="deeppurple" />
-
+		icon="fa-book" icon-background="deeppurple"
+		action="action-dashboard-gst" 
+	/>
+		
+	<action-view name="action-dashboard-gst" title="Gst Dashboard">
+		<view type="dashboard" name="gst-dashboard"/>
+	</action-view>
 
 	<!--party -->
 	<menuitem name="menu-main-party" title="Party" icon="fa-globe"

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views http://axelor.com/xml/ns/object-views/object-views_5.0.xsd">
+
+  <dashboard name="gst-dashboard" title="Gst Dahboard">
+    <dashlet action="chart:chart-unpaid-customer" />
+    <dashlet action="chart:chart-paid-invoice-category-product" />
+    <dashlet action="chart:chart-customer-per-state" />
+    <dashlet action="chart:chart-invoice-amount-per-status" />
+    <dashlet action="chart:chart-invoice-number-per-status" />
+    <dashlet action="action-view-older-invoices" />
+  </dashboard>
+  
+  <action-attrs name="action-date-time-set-defalut">
+    <attribute name="value" for="toDateTime" expr="eval: __datetime__" />
+    <attribute name="value" for="fromDateTime" expr="eval:__date__.withDayOfMonth(1)" />
+  </action-attrs>
+  
+  <chart onInit="action-date-time-set-defalut" name="chart-unpaid-customer" title="Unpaid Invoice Per Customer">
+    <search-fields>
+      <field type="datetime" name="fromDateTime" title="from Date" />
+      <field type="datetime" name="toDateTime" title="To Date" />
+    </search-fields>
+
+    <dataset type="jpql">
+    <![CDATA[
+    SELECT                  
+        count(*) as status,
+        p.name as customer
+    FROM
+        Invoice i
+    Left Join Party p on i.party = p.id
+    WHERE
+        p.customer = true AND i.status != 'Paid' 
+   	AND
+   		i.invoiceDate BETWEEN :fromDateTime AND :toDateTime 
+        GROUP BY p.name
+        
+    ]]>
+    </dataset>
+
+    <category key="customer" type="text" />
+    <series key="status" type="bar" />
+  </chart>
+  
+    <chart onInit="action-date-time-set-defalut" name="chart-paid-invoice-category-product"
+    title="Paid Invoice Per Category Per Product">
+    <search-fields>
+      <field type="datetime" name="fromDateTime" title="from Date" />
+      <field type="datetime" name="toDateTime" title="To Date" />
+    </search-fields>
+
+    <dataset type="jpql">
+    <![CDATA[
+    SELECT
+    count(*) as status ,                 
+    c.name as category,
+    p.name as productName
+    FROM
+     Invoice as i ,
+     InvoiceLine as l,
+     Product as p,
+     ProductCategory as c
+    WHERE
+        i.id = l.invoice AND
+        l.product = p AND
+        p.category = c AND
+        i.status = 'Paid' AND
+        i.invoiceDate BETWEEN :fromDateTime 
+        AND :toDateTime
+    group by c.name ,p.name
+    ]]>
+    </dataset>
+
+    <category key="category" type="text" />
+    <series key="status" groupBy="productName" type="bar" />
+  </chart>
+  
+  <chart name="chart-customer-per-state" title="Customer per State">
+  	<dataset type="jpql">
+  		Select count(*) as Customers, a.state.name as State
+  		from Party p, Address a
+  		where p.customer = true and a.id=any(select add.id from p.address add)
+  		group by a.state.name
+  	</dataset>
+  	<category key="State" type="text"/>
+  	<series key="Customers" groupBy="State" type="pie"/>
+  </chart>
+  
+  <chart name="chart-invoice-amount-per-status" title="Invoice Amount per Status">
+  	<dataset type="jpql">
+  		select i.status as Status,sum(i.netAmount) as Amount from Invoice i group by i.status
+  	</dataset>
+  	<category key="Status" type="text"/>
+  	<series key="Amount" type="bar" />
+  </chart>
+  
+  <chart name="chart-invoice-number-per-status" title="Invoice Number per Status">
+  	<dataset type="jpql">
+  		select count(*) as Status,sum(i.netAmount) as Amount from Invoice i group by i.status
+  	</dataset>
+  	<category key="Status" type="text"/>
+  	<series key="Amount" type="line" />
+  </chart>
+  
+  <action-view name="action-view-older-invoices" title="Older Invoices" model="com.axelor.gst.db.Invoice">
+  	<view type="grid" name="invoice-grid"/>
+  	<domain>self.status='Validated' and self.invoiceDate &lt; :date date </domain>
+  	<context name="date" expr="eval:__date__.now().minusMonths(1)"/>
+  </action-view>
+  
+  
+
+</object-views>
