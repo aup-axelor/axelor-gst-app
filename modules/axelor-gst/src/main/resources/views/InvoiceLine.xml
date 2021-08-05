@@ -19,51 +19,43 @@
 		<field name="grossAmount" />
 	</grid>
 
-	<form title="Invoice Line" name="invoiceLine-form"
-		model="com.axelor.gst.db.InvoiceLine"
-		onSave="action.onSave-invoice-line"
-	>
+	<form title="Invoice Line" name="invoiceLine-form" model="com.axelor.gst.db.InvoiceLine">
 		<panel title="Overview" css="panel-blue">
-			<field name="product"
-				onChange="action.onChangeProduct-invoice-line" />
+			<field name="product" onChange="action-onChangeProduct-invoice-line,action-onChangeAmount-invoice-line"/>
 			<field name="hsbn" />
 			<field name="item" />
 			<field name="invoice"/>
-			<field name="qty" onChange="action.onChangeAmount-invoice-line" />
-			<field name="price" onChange="action.onChangeAmount-invoice-line" />
-			<field name="netAmount" onChange="action-invoiceline-get-taxes,action-invoiceline-get-gross-amount"/>
-			<field name="gstRate" onChange="action-invoiceline-get-taxes,action-invoiceline-get-gross-amount"/>
+			<field name="qty" onChange="action-onChangeAmount-invoice-line"/>
+			<field name="price" onChange="action-onChangeAmount-invoice-line"/>
+			<field name="netAmount" />
+			<field name="gstRate" />
 			<field name="igst" />
 			<field name="sgst" />
 			<field name="cgst" />
 			<field name="grossAmount" />
 		</panel>
 	</form>
-
-	<action-record name="action.onChangeAmount-invoice-line"
-		model="com.axelor.gst.db.InvoiceLine">
+	<!-- Calculate Amount -->
+	<action-record name="action-onChangeAmount-invoice-line" model="com.axelor.gst.db.InvoiceLine">
 		<field name="netAmount" expr="#{price*qty}" />
+		<field name="igst" expr="eval:gstRate*netAmount" if="__parent__.invoice.invoiceAddress.state!=__parent__.invoice.company.address.state"/>
 	</action-record>
-
-<!--	<action-record name="action-igst-cgst-sgst" model="com.axelor.gst.db.InvoiceLine">-->
-<!--		<field name="igst" expr="eval:gstRate*netAmount" if="eval:invoice.invoiceAddress.state!=invoice.shippingAddress.state"/>-->
-<!--		<field name="sgst" expr="eval:gstRate*netAmount/2" if="eval:invoice.invoiceAddress.state!=invoice.shippingAddress.state"/>-->
-<!--		<field name="cgst" expr="eval:gstRate*netAmount/2" if="eval:invoice.invoiceAddress.state!=invoice.shippingAddress.state" />-->
-<!--	</action-record>-->
-
-<!--	<action-record name="action.onSave-invoice-line"-->
-<!--		model="com.axelor.gst.db.InvoiceLine">-->
-<!--		<field name="grossAmount" expr="eval:igst+cgst+sgst+netAmount" />-->
-<!--	</action-record>-->
+	
+	
+	<action-group name="action-group-invoiceLine-tax-grossAmount">
+		<action name="action-invoiceline-get-taxes"/>
+		<action name="action-invoiceline-get-gross-amount"/>
+	</action-group>
 	
 	<action-method name="action-invoiceline-get-taxes">
-		<call class="com.axelor.gst.controller.InvoiceController" method="getTaxes"/>
+		<call class="com.axelor.gst.controller.InvoiceLineController" method="getTaxes"/>
 	</action-method>
 	<action-method name="action-invoiceline-get-gross-amount">
-		<call class="com.axelor.gst.controller.InvoiceController" method="getGrossAmount"/>
+		<call class="com.axelor.gst.controller.InvoiceLineController" method="getGrossAmount"/>
 	</action-method>
 
-	<action-record name="action.onChangeProduct-invoice-line" model="com.axelor.gst.db.InvoiceLine">
+	<!-- GST Rate and Item name from Product table -->
+	<action-record name="action-onChangeProduct-invoice-line" model="com.axelor.gst.db.InvoiceLine">
 		<field name="gstRate" expr="#{product.getCategory().getGstRate()}" />
 		<field name="item" expr="eval: '['+product.code+']'+product.name" />
 	</action-record>
