@@ -9,25 +9,31 @@ import com.google.inject.Inject;
 
 import java.math.BigDecimal;
 
+import org.slf4j.Logger;
+
 public class InvoiceLineController {
 
-    @Inject
-    InvoiceLineService service;
+	@Inject
+	InvoiceLineService service;
+	
+	@Inject
+	private Logger log;
 
-    public void getTaxes(ActionRequest request, ActionResponse response){
-        InvoiceLine line=request.getContext().asType(InvoiceLine.class);
-        Invoice invoice=request.getContext().getParent().asType(Invoice.class);//
-        BigDecimal igst=service.getIgst(invoice,line);
-        BigDecimal sgst=service.getSgst(invoice,line);
-        BigDecimal cgst=service.getCgst(invoice,line);
-        response.setValue("igst",igst);
-        response.setValue("cgst",cgst);
-        response.setValue("sgst",sgst);
-    }
+	public void getTaxes(ActionRequest request, ActionResponse response) {
+		InvoiceLine line = request.getContext().asType(InvoiceLine.class);
+		Invoice invoice = request.getContext().getParent().asType(Invoice.class);//
+		BigDecimal igst = service.getIgst(invoice, line);
+		BigDecimal sgst = service.getSgst(invoice, line);
+		BigDecimal cgst = service.getCgst(invoice, line);
+		response.setValue("igst", igst);
+		response.setValue("cgst", cgst);
+		response.setValue("sgst", sgst);
+		log.info("Get taxes called");
+	}
 
-    public void getGrossAmount(ActionRequest request,ActionResponse response){
-        InvoiceLine line=request.getContext().asType(InvoiceLine.class);
-        BigDecimal grossAmount=service.getGrossAmount(line);
-        response.setValue("grossAmount",grossAmount);
-    }
+	public void getGrossAmount(ActionRequest request, ActionResponse response) {
+		InvoiceLine line = request.getContext().asType(InvoiceLine.class);
+		BigDecimal grossAmount = service.getGrossAmount(line);
+		response.setValue("grossAmount", grossAmount);
+	}
 }
