@@ -9,7 +9,7 @@
 	<entity name="Address">
 		<string name="type" default="Default" title="Type"
 			required="true" selection="addressType" />
-		<string name="line1" title="Line1" required="true" />
+		<string name="line1" title="Line1" required="true" namecolumn="true"/>
 		<string name="line2" title="Line2" />
 		<many-to-one name="city" ref="com.axelor.gst.db.City"
 			required="true" title="City" />
